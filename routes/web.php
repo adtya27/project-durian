@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('pages.auth.login');
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'login');
 });
 
 Route::get('/', function () {
@@ -22,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('pages.dashboard');
+    return view('pages.dashboard-admin');
 });
 
 Route::get('/admin', function () {
