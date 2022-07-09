@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Durian;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        Durian::factory(10)->create();
     }
 }
