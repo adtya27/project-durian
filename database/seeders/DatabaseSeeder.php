@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        $this->call([
+            UserSeeder::class
+        ]);
         Durian::factory(10)->create();
     }
 }
