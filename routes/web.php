@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -15,16 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'login');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware('admin');
 });
 
-Route::get('/', function () {
-    return view('about');
-});
+Auth::routes();
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
-
-Route::get('/admin', function () {
-    return view('pages.admin');
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
