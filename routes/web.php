@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -21,6 +22,8 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware('admin');
+
+    Route::resource('admins', AdminController::class)->middleware('admin');
 });
 
 Auth::routes();

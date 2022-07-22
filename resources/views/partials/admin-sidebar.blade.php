@@ -143,5 +143,24 @@
                 <span class="menu-title">Documentation</span>
             </a>
         </li>
+        <li class="nav-item nav-category">
+            <span class="nav-link">Users Settings</span>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('admins.index') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-contacts"></i>
+                </span>
+                <span class="menu-title">Admins</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="pages/icons/mdi.html">
+                <span class="menu-icon">
+                    <i class="mdi mdi-contacts"></i>
+                </span>
+                <span class="menu-title">Users</span>
+            </a>
+        </li>
     </ul>
 </nav>
