@@ -8,6 +8,16 @@
             <div class="card col-lg-4 mx-auto">
                 <div class="card-body px-5 py-5">
                     <h3 class="card-title text-start mb-3">Login</h3>
+                    @if (Session::get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <span class="alert-text">
+                            {{ Session::get('error') }}
+                        </span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
