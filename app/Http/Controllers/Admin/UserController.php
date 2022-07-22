@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = User::where('level', '=', 'admin')->paginate(5);
+        $users = User::where('level', '=', 'user')->paginate(5);
 
-        return view('pages.admin.admin.index')->with([
-            'admins' => $admins,
+        return view('pages.admin.user.index')->with([
+            'users' => $users,
         ]);
     }
 
@@ -30,7 +30,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.admin.create');
+        return view('pages.admin.user.create');
     }
 
     /**
@@ -51,10 +51,10 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => 'admin'
+            'level' => 'user'
         ]);
 
-        return redirect()->route('admins.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -76,10 +76,10 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admin = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        return view('pages.admin.admin.edit')->with([
-            'admin' => $admin,
+        return view('pages.admin.user.edit')->with([
+            'user' => $user,
         ]);
     }
 
@@ -92,14 +92,14 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $admin = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
         $request->validate([
             'name' => 'required|string|max:255',
             'password' => 'required|string|min:8|confirmed'
         ]);
 
-        if ($admin->email !== $request->email) $request->validate(['email' => 'required|string|email|max:255|unique:users',]);
+        if ($user->email !== $request->email) $request->validate(['email' => 'required|string|email|max:255|unique:users']);
 
         User::where('id', $id)->update([
             'name' => $request->name,
@@ -107,7 +107,7 @@ class AdminController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('admins.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -120,6 +120,6 @@ class AdminController extends Controller
     {
         User::destroy($id);
 
-        return redirect()->route('admins.index');
+        return redirect()->route('users.index');
     }
 }
