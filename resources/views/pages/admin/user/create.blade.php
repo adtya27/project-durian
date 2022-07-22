@@ -10,19 +10,19 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
-                <h3 class="page-title"> Add New Admin </h3>
+                <h3 class="page-title"> Add New User </h3>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add New Admin</li>
+                        <li class="breadcrumb-item active" aria-current="page">Add New User</li>
                     </ol>
                 </nav>
             </div>
             <div class="content-wrapper full-page-wrapper align-items-center">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Add New Admin</h4>
-                        <form method="POST" action="{{ route('admins.store') }}">
+                        <h4 class="card-title">Add New User</h4>
+                        <form method="POST" action="{{ route('users.store') }}">
                             @csrf
                             <div class="form-group">
                                 <label>Name</label>

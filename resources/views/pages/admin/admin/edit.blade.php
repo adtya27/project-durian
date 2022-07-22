@@ -10,18 +10,18 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
-                <h3 class="page-title"> Add New Admin </h3>
+                <h3 class="page-title"> Update Admin </h3>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add New Admin</li>
+                        <li class="breadcrumb-item active" aria-current="page">Update Admin</li>
                     </ol>
                 </nav>
             </div>
             <div class="content-wrapper full-page-wrapper align-items-center">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Add New Admin</h4>
+                        <h4 class="card-title">Update Admin</h4>
                         <form method="POST" action="{{ route('admins.update', $admin->id) }}">
                             @csrf
                             @method('put')
@@ -68,7 +68,7 @@
                                 @enderror
                             </div>
                             <div class="text-left">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">submit</button>
                             </div>
                         </form>
                     </div>
