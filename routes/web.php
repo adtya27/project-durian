@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\admin\DurianController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,20 +20,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'login');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware('admin');
+
+    Route::resource('durians', DurianController::class)->middleware('admin');
+    Route::resource('admins', AdminController::class)->middleware('admin');
+    Route::resource('users', UserController::class)->middleware('admin');
 });
 
-Route::get('/', function () {
-    return view('about');
-});
-
-Route::get('/dashboard', [DashboardController::class, 'index']);
-
-Route::get('/admin', function () {
-    return view('pages.admin');
-});
-
-Route::get('/dashboard-user', function () {
-    return view('pages.dashboard-user');
-});
+Auth::routes();

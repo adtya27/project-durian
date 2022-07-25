@@ -4,3 +4,4 @@
 - Create a copy of your .env file ``` cp .env.example .env ```
 - Generate app key ``` php artisan key:generate ```
 - Migrate the database ``` php artisan migrate:fresh --seed ```
+- Link the storage ``` php artisan storage:link ```
