@@ -49,7 +49,7 @@ class DurianController extends Controller
             'image' => 'required|mimes:jpg,png,jpeg'
         ]);
 
-        $image = $request->file('image')->store('images');
+        $image = $request->file('image')->store('images', 'public');
 
         Durian::create([
             'name' => $request->name,
@@ -109,8 +109,8 @@ class DurianController extends Controller
 
         switch (true) {
             case $request->hasFile('image'):
-                $image = $request->file('image')->store('images');
-                if (Storage::exists($request->old_image)) Storage::delete($request->old_image);
+                $image = $request->file('image')->store('images', 'public');
+                if (Storage::exists('public/' . $request->old_image)) Storage::delete('public/' . $request->old_image);
                 break;
             default:
                 $image = $request->old_image;
@@ -138,7 +138,7 @@ class DurianController extends Controller
     {
         $durian = Durian::findOrFail($id);
 
-        if (Storage::exists($durian->image)) Storage::delete($durian->image);
+        if (Storage::exists('public/' . $durian->image)) Storage::delete('public/' . $durian->image);
 
         Durian::destroy($id);
 
