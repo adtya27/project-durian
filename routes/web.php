@@ -28,3 +28,7 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/admin', function () {
     return view('pages.admin');
 });
+
+Route::get('/dashboard-user', function () {
+    return view('pages.dashboard-user');
+});
