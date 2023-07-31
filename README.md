@@ -1,3 +1,4 @@
+# Simple Project Penjualan Durian
 # Instalation
 - Install composer dependencies ``` composer install ```
 - Install NPM dependencies ``` npm install ```
